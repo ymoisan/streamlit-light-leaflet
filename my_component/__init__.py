@@ -1,6 +1,8 @@
 import os
 import streamlit.components.v1 as components
 
+img_list = ['image 1', 'image 2']
+
 _RELEASE = False
 
 if not _RELEASE:
@@ -20,7 +22,9 @@ def my_component(key=None):
 
 
 if not _RELEASE:
+    clicked_coords = img_list
     import streamlit as st
-    st.subheader("Leaflet - return coords on click")
+    st.subheader("Leaflet - return coords on click and bbox on moveend")
     clicked_coords = my_component()
     st.markdown(clicked_coords)
+    total_images = st.sidebar.selectbox(label="Image à inférer", options=clicked_coords.split(','))
